@@ -17,6 +17,18 @@ The code is divided as follows:
 * The [utils](https://github.com/hfawaz/InceptionTime/tree/master/utils) folder contains the necessary functions to read the datasets and visualize the plots.
 * The [classifiers](https://github.com/hfawaz/InceptionTime/tree/master/classifiers) folder contains two python files: (1) [inception.py](https://github.com/hfawaz/InceptionTime/tree/master/classifiers/inception.py) contains the inception network; (2) [nne.py](https://github.com/hfawaz/InceptionTime/tree/master/classifiers/nne.py) contains the code that ensembles a set of Inception networks. 
 
+### Adapt the code for your PC
+You should first consider changing the following [line](https://github.com/hfawaz/InceptionTime/blob/c9a323c789984e3fb56e82ebb4eea6438611e59c/main.py#L83). 
+This is the root file of everything (data and results) let's call it ```root_dir```. 
+
+After that you should create a folder called ```archives``` inside your ```root_dir```, which should contain the folder ```UCR_TS_Archive_2015```. 
+The latter will contain a folder for each dataset called ```dataset_name```, which can be downloaded from this [website](https://www.cs.ucr.edu/~eamonn/time_series_data/).
+
+The names of the datasets are present [here](https://github.com/hfawaz/InceptionTime/blob/c9a323c789984e3fb56e82ebb4eea6438611e59c/utils/constants.py#L1). 
+You can comment [this line](https://github.com/hfawaz/InceptionTime/blob/c9a323c789984e3fb56e82ebb4eea6438611e59c/utils/constants.py#L19) to run the experiments on all datasets. 
+
+Once you have done all that, you can proceed to run on a single archive. 
+
 ### Run InceptionTime on a single Archive
 You should issue the following command ```python3 main.py InceptionTime```. 
 
@@ -31,6 +43,8 @@ Then you should issue the following command ```python3 main.py InceptionTime``` 
 To run the experiments on the synthetic dataset, you should issue the following command ```python3 receptive.py```. 
 
 ## Results
+The result (i.e. accuracy) for each dataset will be present in ```root_dir/results/nne/incepton-0-1-2-4-/UCR_TS_Archive_2015/dataset_name/df_metrics.csv```.
+
 The raw results can be found [here](https://github.com/hfawaz/InceptionTime/blob/master/results.csv) and generated using the following command ```python3 main.py generate_results_csv```.
 
 ### Critical difference diagrams
