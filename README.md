@@ -47,6 +47,8 @@ The result (i.e. accuracy) for each dataset will be present in ```root_dir/resul
 
 The raw results can be found [here](https://github.com/hfawaz/InceptionTime/blob/master/results.csv) and generated using the following command ```python3 main.py generate_results_csv```.
 
+We recently added the full results for the 128 datasets from the UCR archive, they can be found [here](https://github.com/hfawaz/InceptionTime/blob/master/results-128.csv). 
+
 ### Critical difference diagrams
 If you would like to generate such a diagram, take a look at [this code](https://github.com/hfawaz/cd-diagram)!
 
