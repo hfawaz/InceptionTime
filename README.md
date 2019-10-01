@@ -51,6 +51,8 @@ We added the full results for the 128 datasets from the UCR archive, they can be
 
 We have added the full results for the 30 datasets from the [MTS UEA archive](http://www.timeseriesclassification.com/), they can be found [here](https://github.com/hfawaz/InceptionTime/blob/master/results-mts.csv). 
 
+The [results-5-iterations.csv](https://github.com/hfawaz/InceptionTime/blob/master/results-5-iterations.csv) file contains five individual runs of the Inception model over the 128 datasets from the UCR 2018 archive. 
+
 ### Critical difference diagrams
 If you would like to generate such a diagram, take a look at [this code](https://github.com/hfawaz/cd-diagram)!
 
