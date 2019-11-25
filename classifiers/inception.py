@@ -10,7 +10,7 @@ from utils.utils import save_test_duration
 
 class Classifier_INCEPTION:
 
-    def __init__(self, output_directory, input_shape, nb_classes, verbose=False, build=True, batch_size=64,
+    def __init__(self, output_directory, input_shape, nb_classes, verbose=True, build=True, batch_size=64,
                  nb_filters=32, use_residual=True, use_bottleneck=True, depth=6, kernel_size=41, nb_epochs=1500):
 
         self.output_directory = output_directory
