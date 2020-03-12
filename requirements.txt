@@ -63,7 +63,7 @@ Pillow==3.1.2
 pkg-resources==0.0.0
 plainbox==0.25
 protobuf==3.6.1
-psutil==3.4.2
+psutil==5.6.6
 ptyprocess==0.5
 pyasn1==0.1.9
 pycups==1.9.73
