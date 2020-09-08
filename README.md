@@ -1,5 +1,5 @@
 # InceptionTime: Finding AlexNet for Time Series Classification
-This is the companion repository for our paper titled "InceptionTime: Finding AlexNet for Time Series Classification" available on [ArXiv](https://arxiv.org/pdf/1909.04939.pdf). 
+This is the companion repository for our paper titled [InceptionTime: Finding AlexNet for Time Series Classification](https://link.springer.com/article/10.1007/s10618-020-00710-y) published in [Data Mining and Knowledge Discovery](https://www.springer.com/journal/10618) and also available on [ArXiv](https://arxiv.org/pdf/1909.04939.pdf). 
 
 ## Inception module
 ![inception module](https://github.com/hfawaz/InceptionTime/blob/master/pngs/inception-module.png)
@@ -79,11 +79,11 @@ Receptive field effect             |  Depth effect
 If you re-use this work, please cite:
 
 ```
-@article{IsmailFawaz2019inceptionTime,
+@article{IsmailFawaz2020inceptionTime,
   Title                    = {InceptionTime: Finding AlexNet for Time Series Classification},
   Author                   = {Ismail Fawaz, Hassan and Lucas, Benjamin and Forestier, Germain and Pelletier, Charlotte and Schmidt, Daniel F. and Weber, Jonathan and Webb, Geoffrey I. and Idoumghar, Lhassane and Muller, Pierre-Alain and Petitjean, François},
-  journal                  = {ArXiv},
-  Year                     = {2019}
+  journal                  = {Data Mining and Knowledge Discovery},
+  Year                     = {2020}
 }
 ```
 
