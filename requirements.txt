@@ -14,7 +14,7 @@ chardet==3.0.4
 checkbox-support==0.22
 command-not-found==0.3
 CommonMark==0.7.5
-cryptography==1.2.3
+cryptography==3.2
 cycler==0.9.0
 Cython==0.29.7
 decorator==4.3.0
