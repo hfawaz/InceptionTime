@@ -1,5 +1,5 @@
-# resnet model
-import keras
+import tensorflow.keras as keras
+import tensorflow as tf
 import numpy as np
 import time
 
@@ -10,7 +10,7 @@ from utils.utils import save_test_duration
 
 class Classifier_INCEPTION:
 
-    def __init__(self, output_directory, input_shape, nb_classes, verbose=False, build=True, batch_size=64,
+    def __init__(self, output_directory, input_shape, nb_classes, verbose=False, build=True, batch_size=64, lr=0.001,
                  nb_filters=32, use_residual=True, use_bottleneck=True, depth=6, kernel_size=41, nb_epochs=1500):
 
         self.output_directory = output_directory
@@ -24,17 +24,18 @@ class Classifier_INCEPTION:
         self.batch_size = batch_size
         self.bottleneck_size = 32
         self.nb_epochs = nb_epochs
+        self.lr = lr
+        self.verbose = verbose
 
         if build == True:
             self.model = self.build_model(input_shape, nb_classes)
             if (verbose == True):
                 self.model.summary()
-            self.verbose = verbose
             self.model.save_weights(self.output_directory + 'model_init.hdf5')
 
     def _inception_module(self, input_tensor, stride=1, activation='linear'):
 
-        if self.use_bottleneck and int(input_tensor.shape[-1]) > 1:
+        if self.use_bottleneck and int(input_tensor.shape[-1]) > self.bottleneck_size:
             input_inception = keras.layers.Conv1D(filters=self.bottleneck_size, kernel_size=1,
                                                   padding='same', activation=activation, use_bias=False)(input_tensor)
         else:
@@ -65,7 +66,7 @@ class Classifier_INCEPTION:
     def _shortcut_layer(self, input_tensor, out_tensor):
         shortcut_y = keras.layers.Conv1D(filters=int(out_tensor.shape[-1]), kernel_size=1,
                                          padding='same', use_bias=False)(input_tensor)
-        shortcut_y = keras.layers.normalization.BatchNormalization()(shortcut_y)
+        shortcut_y = keras.layers.BatchNormalization()(shortcut_y)
 
         x = keras.layers.Add()([shortcut_y, out_tensor])
         x = keras.layers.Activation('relu')(x)
@@ -91,7 +92,7 @@ class Classifier_INCEPTION:
 
         model = keras.models.Model(inputs=input_layer, outputs=output_layer)
 
-        model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(),
+        model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(self.lr),
                       metrics=['accuracy'])
 
         reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.5, patience=50,
@@ -106,8 +107,8 @@ class Classifier_INCEPTION:
 
         return model
 
-    def fit(self, x_train, y_train, x_val, y_val, y_true, plot_test_acc=False):
-        if len(keras.backend.tensorflow_backend._get_available_gpus()) == 0:
+    def fit(self, x_train, y_train, x_val, y_val, y_true):
+        if not tf.test.is_gpu_available:
             print('error no gpu')
             exit()
         # x_val and y_val are only used to monitor the test loss and NOT for training
@@ -119,14 +120,8 @@ class Classifier_INCEPTION:
 
         start_time = time.time()
 
-        if plot_test_acc:
-
-            hist = self.model.fit(x_train, y_train, batch_size=mini_batch_size, epochs=self.nb_epochs,
-                                  verbose=self.verbose, validation_data=(x_val, y_val), callbacks=self.callbacks)
-        else:
-
-            hist = self.model.fit(x_train, y_train, batch_size=mini_batch_size, epochs=self.nb_epochs,
-                                  verbose=self.verbose, callbacks=self.callbacks)
+        hist = self.model.fit(x_train, y_train, batch_size=mini_batch_size, epochs=self.nb_epochs,
+                              verbose=self.verbose, validation_data=(x_val, y_val), callbacks=self.callbacks)
 
         duration = time.time() - start_time
 
@@ -141,8 +136,7 @@ class Classifier_INCEPTION:
         # convert the predicted from binary to integer
         y_pred = np.argmax(y_pred, axis=1)
 
-        df_metrics = save_logs(self.output_directory, hist, y_pred, y_true, duration,
-                               plot_test_acc=plot_test_acc)
+        df_metrics = save_logs(self.output_directory, hist, y_pred, y_true, duration)
 
         keras.backend.clear_session()
 
