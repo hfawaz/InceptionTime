@@ -34,7 +34,7 @@ idna==2.6
 imageio==2.5.0
 ipython==2.4.1
 jedi==0.9.0
-Jinja2==2.8
+Jinja2==2.11.3
 joblib==0.11
 Keras==2.2.4
 Keras-Applications==1.0.6
