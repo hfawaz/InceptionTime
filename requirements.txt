@@ -9,7 +9,7 @@ bleach==1.5.0
 blinker==1.3
 Bottleneck==1.2.1
 Brlapi==0.6.4
-certifi==2018.4.16
+certifi==2022.12.7
 chardet==3.0.4
 checkbox-support==0.22
 command-not-found==0.3
