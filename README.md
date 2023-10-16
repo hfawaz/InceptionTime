@@ -62,7 +62,7 @@ If you would like to generate such a diagram, take a look at [this code](https:/
 ### Training time plots
 These plots were generated using the [matplotlib](https://matplotlib.org/) library. 
 
-Accuracy vs train size             |  Accuracy vs series length
+Training time vs train size             |  Training time vs series length
 :-------------------------:|:-------------------------:
 ![training time size](https://github.com/hfawaz/InceptionTime/blob/master/pngs/train-time-size.png) | ![training time length](https://github.com/hfawaz/InceptionTime/blob/master/pngs/train-time-length.png)
 
