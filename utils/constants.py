@@ -18,8 +18,8 @@ UNIVARIATE_DATASET_NAMES = ['50words', 'Adiac', 'ArrowHead', 'Beef', 'BeetleFly'
 
 UNIVARIATE_DATASET_NAMES = ['Meat', 'Coffee']
 
-UNIVARIATE_ARCHIVE_NAMES = ['TSC', 'InlineSkateXPs', 'SITS']
-UNIVARIATE_ARCHIVE_NAMES = ['TSC']
+UNIVARIATE_ARCHIVE_NAMES = ['Univariate_arff','mts_archive', 'coto_data', 'InlineSkateXPs', 'SITS']
+
 
 SITS_DATASETS = ['SatelliteFull_TRAIN_c301', 'SatelliteFull_TRAIN_c200', 'SatelliteFull_TRAIN_c451',
                  'SatelliteFull_TRAIN_c89', 'SatelliteFull_TRAIN_c677', 'SatelliteFull_TRAIN_c59',
@@ -29,6 +29,6 @@ InlineSkateXPs_DATASETS = ['InlineSkate-32', 'InlineSkate-64', 'InlineSkate-128'
                            'InlineSkate-256', 'InlineSkate-512', 'InlineSkate-1024',
                            'InlineSkate-2048']
 
-dataset_names_for_archive = {'TSC': UNIVARIATE_DATASET_NAMES,
+dataset_names_for_archive = {'Univariate_arff': UNIVARIATE_DATASET_NAMES,
                              'SITS': SITS_DATASETS,
                              'InlineSkateXPs': InlineSkateXPs_DATASETS}

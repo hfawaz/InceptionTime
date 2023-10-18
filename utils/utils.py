@@ -28,9 +28,11 @@ def check_if_file_exits(file_name):
 
 
 def readucr(filename, delimiter=','):
-    data = np.loadtxt(filename, delimiter=delimiter)
-    Y = data[:, 0]
-    X = data[:, 1:]
+    data = np.loadtxt(filename)
+    Y = data[:,0]
+    X = data[:,1:]
+    print(X.shape, Y.shape)
+    print(X[0], Y[0])
     return X, Y
 
 
@@ -56,11 +58,31 @@ def create_directory(directory_path):
 def read_dataset(root_dir, archive_name, dataset_name):
     datasets_dict = {}
 
-    file_name = root_dir + '/archives/' + archive_name + '/' + dataset_name + '/' + dataset_name
-    x_train, y_train = readucr(file_name + '_TRAIN')
-    x_test, y_test = readucr(file_name + '_TEST')
-    datasets_dict[dataset_name] = (x_train.copy(), y_train.copy(), x_test.copy(),
-                                   y_test.copy())
+    if archive_name == 'coto_data':
+        file_name = root_dir+'/archives/'+archive_name+'/'+dataset_name+'/'
+        x_train = np.load(file_name + 'x_train.npy')
+        y_train = np.load(file_name + 'y_train.npy')
+        x_test = np.load(file_name + 'x_test.npy')
+        y_test = np.load(file_name + 'y_test.npy')
+
+        datasets_dict[dataset_name] = (x_train.copy(), y_train.copy(), x_test.copy(),
+                                       y_test.copy())
+    elif archive_name == 'mts_archive':
+        file_name = root_dir+'/archives/'+archive_name+'/'+dataset_name+'/'
+        x_train = np.load(file_name + 'x_train.npy')
+        y_train = np.load(file_name + 'y_train.npy')
+        x_test = np.load(file_name + 'x_test.npy')
+        y_test = np.load(file_name + 'y_test.npy')
+
+        datasets_dict[dataset_name] = (x_train.copy(), y_train.copy(), x_test.copy(),
+                                       y_test.copy())
+
+    else:
+        file_name = root_dir + '/archives/' + archive_name + '/' + dataset_name + '/' + dataset_name
+        x_train, y_train = readucr(file_name + '_TRAIN.txt')
+        x_test, y_test = readucr(file_name + '_TEST.txt')
+        datasets_dict[dataset_name] = (x_train.copy(), y_train.copy(), x_test.copy(),
+                                    y_test.copy())
 
     return datasets_dict
 
@@ -70,12 +92,12 @@ def read_all_datasets(root_dir, archive_name):
 
     dataset_names_to_sort = []
 
-    if archive_name == 'TSC':
+    if archive_name == 'Univariate_arff':
         for dataset_name in DATASET_NAMES:
             root_dir_dataset = root_dir + '/archives/' + archive_name + '/' + dataset_name + '/'
             file_name = root_dir_dataset + dataset_name
-            x_train, y_train = readucr(file_name + '_TRAIN')
-            x_test, y_test = readucr(file_name + '_TEST')
+            x_train, y_train = readucr(file_name + '_TRAIN.txt')
+            x_test, y_test = readucr(file_name + '_TEST.txt')
 
             datasets_dict[dataset_name] = (x_train.copy(), y_train.copy(), x_test.copy(),
                                            y_test.copy())

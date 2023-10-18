@@ -10,7 +10,7 @@ import time
 
 class Classifier_NNE:
 
-    def create_classifier(self, model_name, input_shape, nb_classes, output_directory, verbose=False,
+    def create_classifier(self, model_name, input_shape, nb_classes, output_directory, verbose=True,
                           build=True):
         if self.check_if_match('inception*', model_name):
             from classifiers import inception
@@ -22,7 +22,7 @@ class Classifier_NNE:
         pattern = re.compile(rex)
         return pattern.match(name2)
 
-    def __init__(self, output_directory, input_shape, nb_classes, verbose=False, nb_iterations=5,
+    def __init__(self, output_directory, input_shape, nb_classes, verbose=True, nb_iterations=5,
                  clf_name='inception'):
         self.classifiers = [clf_name]
         out_add = ''
