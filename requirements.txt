@@ -28,7 +28,7 @@ graphviz==0.8.2
 grpcio==1.16.1
 guacamole==0.9.2
 h5py==2.8.0
-html5lib==0.9999999
+html5lib==0.999999999
 httplib2==0.9.1
 idna==2.6
 imageio==2.5.0
