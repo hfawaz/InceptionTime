@@ -84,7 +84,7 @@ pyxdg==0.25
 PyYAML==5.1
 pyzmq==15.2.0
 reportlab==3.3.0
-requests==2.18.4
+requests==2.20.0
 roman==2.0.0
 scikit-learn==0.19.1
 scipy==1.4.0.dev0+1953c76
