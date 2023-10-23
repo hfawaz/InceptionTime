@@ -29,7 +29,7 @@ grpcio==1.16.1
 guacamole==0.9.2
 h5py==2.8.0
 html5lib==0.9999999
-httplib2==0.9.1
+httplib2==0.19.0
 idna==2.6
 imageio==2.5.0
 ipython==2.4.1
